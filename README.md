@@ -1,5 +1,8 @@
 # Inclined_sweeps_HAARP
 ## Source data links
+### Zenodo record
+Shindin, Alexey. (2019). Properties of Stimulated Electromagnetic Emissions during Inclined HF Pumping of the Ionosphere near the 4th Electron Gyroharmonic at HAARP - data set (Version 1.0.0) [Data set]. Zenodo. [http://doi.org/10.5281/zenodo.2600237](http://doi.org/10.5281/zenodo.2600237)
+
 ### Riverview RF data
 [spew_110330_012948_05830_0250_01_01.DRXS12.7z](https://yadi.sk/d/64ohlqK5IgqqUg) SHA1: 70d3ce3b594ece4ecc2d94aa48971b7dd452b68a  
 [spew_110330_013028_05830_0250_01_01.DRXS12.7z](https://yadi.sk/d/64ohlqK5IgqqUg) SHA1: 304a9a05696a57709086fa391184f87f0b0a8a43  
