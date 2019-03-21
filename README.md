@@ -11,7 +11,7 @@ i.e. using wget:
 wget -i raw_data_archive.urls
 ```
 ### Check the data 
-In linux:
+In Linux:
 ```bash
 sed 's/\r$//' checksums.sha | sed 's/\r/\n'/ | sha1sum -c
 ```
