@@ -1,3 +1,10 @@
+# debug jupyter notebooks
+*.ipynb
+
+# numpy data files
+*.npy
+*.npz
+
 # figures
 *.pdf
 *.png
