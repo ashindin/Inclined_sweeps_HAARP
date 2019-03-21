@@ -31,7 +31,7 @@ All code tested with Anaconda 2018.12 python distribution:
 * pandas-0.23.4
 * matplotlib-3.0.2
 * scipy-1.1.0
-## Figure 1
+### Figure 1
 ```bash
 python3 figure1.py
 ```
