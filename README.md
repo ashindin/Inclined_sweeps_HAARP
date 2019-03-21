@@ -30,7 +30,13 @@ All code tested with Anaconda 2018.12 python distribution:
 * numpy-1.15.4
 * pandas-0.23.4
 * matplotlib-3.0.2
-* scipy-1.1.0
+* scipy-1.1.0  
+
+To extract RF data from '\*.DRXS12' files [GNU Octave](https://www.gnu.org/software/octave/) (or Matlab) is requied. Octave code tested with GNU Octave 5.1.0.
+### Extract RF Data from '\*.DRXS12'
+```bash
+octave extract_spew.m
+```
 ### Figure 1
 ```bash
 python3 figure1.py
