@@ -25,7 +25,7 @@ wvunpack -r *.wv
 ```
 ## Reproducing the figures
 ### Setup environment
-All code tested with Anaconda 2018.12 python distribution:  
+All code tested with [Anaconda 2018.12](https://repo.continuum.io/archive/) python distribution:  
 * Python 3.7.1
 * numpy-1.15.4
 * pandas-0.23.4
