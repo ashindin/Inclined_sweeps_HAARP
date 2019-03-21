@@ -15,7 +15,7 @@ In linux:
 ```bash
 sed 's/\r$//' checksums.sha | sed 's/\r/\n'/ | sha1sum -c
 ```
-In Windows ine can use [Double commander](https://doublecmd.sourceforge.io/) to do this.
+In Windows one can use [Double commander](https://doublecmd.sourceforge.io/) to do this.
 
 ### Unpack the data
 Third-party software needed: [7zip](https://www.7-zip.org/) for '\*.7z' files, [wavpack](http://www.wavpack.com/) for '\*.wv' files.  
