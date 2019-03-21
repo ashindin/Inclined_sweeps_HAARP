@@ -1,3 +1,11 @@
+*.7z
+*.wv
+*.xlsx
+*.sha
+*.raw
+*.DRXS12
+*.data
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
