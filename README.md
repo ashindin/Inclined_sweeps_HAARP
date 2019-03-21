@@ -21,7 +21,5 @@ In Windows one can use [Double commander](https://doublecmd.sourceforge.io/) to 
 Third-party software needed: [7zip](https://www.7-zip.org/) for '\*.7z' files, [wavpack](http://www.wavpack.com/) for '\*.wv' files.  
 ```bash
 wvunpack -r *.wv
-```
-``` bach
 7z -y x "*.7z"
 ```
