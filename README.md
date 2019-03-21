@@ -23,3 +23,15 @@ Third-party software needed: [7zip](https://www.7-zip.org/) for '\*.7z' files, [
 wvunpack -r *.wv
 7z -y x "*.7z"
 ```
+## Reproducing the figures
+### Setup environment
+All code tested with Anaconda 2018.12 python distribution:  
+* Python 3.7.1
+* numpy-1.15.4
+* pandas-0.23.4
+* matplotlib-3.0.2
+* scipy-1.1.0
+## Figure 1
+```bash
+python3 figure1.py
+```
