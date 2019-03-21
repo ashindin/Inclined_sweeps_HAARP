@@ -1,3 +1,8 @@
+# figures
+*.pdf
+*.png
+
+# raw data
 *.7z
 *.wv
 *.xlsx
