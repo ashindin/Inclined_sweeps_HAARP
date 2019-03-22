@@ -77,7 +77,7 @@ for i in range(len(f0_ind)):
 
 view_spectrogram_dbshift(t_axe,f_axe_new,spm_inline,tit="$f_0$-shifted spectrogram A (nfft="+str(nfft)+")",
                              min_int=-120,max_int=-80,ymin=-50,ymax=150,
-                             db_shift=-8.5,savefile=png_fname_out)
+                             db_shift=-8.7,savefile=png_fname_out)
 
 
 # In[64]:

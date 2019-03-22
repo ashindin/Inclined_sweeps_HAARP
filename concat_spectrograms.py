@@ -173,7 +173,7 @@ t_axe=np.array([i*period_samples/sr for i in range(SPCAT.shape[0])])
 
 view_spectrogram_dbshift(t_axe,f_axe/1000,SPCAT,tit="Spectrogram A (nfft="+str(nfft)+")",
                              min_int=-120,max_int=-80,ymin=-125,ymax=125,
-                             db_shift=-8.5,savefile=png_fname_out)
+                             db_shift=-8.7,savefile=png_fname_out)
 
 
 # In[36]:
