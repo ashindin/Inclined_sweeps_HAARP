@@ -37,6 +37,16 @@ To extract RF data from '\*.DRXS12' files [GNU Octave](https://www.gnu.org/softw
 ```bash
 octave-cli extract_spew.m
 ```
+### Get PSD spectrograms
+```bash
+python3 get_spectrograms_A.py
+python3 get_spectrograms_B.py
+python3 get_spectrograms_C.py
+```
+### Concatenate spectrograms to get one spectrogram per site
+```bash
+python3 concat_spectrograms.py
+```
 ### Figure 1
 ```bash
 python3 figure1.py
