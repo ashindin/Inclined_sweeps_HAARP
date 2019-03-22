@@ -47,6 +47,10 @@ python3 get_spectrograms_C.py
 ```bash
 python3 concat_spectrograms.py
 ```
+### Process spectrograms to get f0-shifted spectrograms
+```bash
+python3 inline_sweeps.py
+```
 ### Figure 1
 ```bash
 python3 figure1.py
