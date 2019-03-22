@@ -38,7 +38,9 @@ def view_spectrogram_dbshift(t_axe,f_axe,spectrogram,tit='',min_int=-120,max_int
 full_spm_fname='spectrogram_A_n250.npz'
 npz_fname_out=full_spm_fname.replace('spectrogram','f0shifted_spm')
 png_fname_out=npz_fname_out.replace('.npz','.png')
-# png_fname_out
+npz_fname_out2=npz_fname_out.replace('.npz','_filt.npz')
+png_fname_out2=png_fname_out.replace('.png','_filt.png')
+# png_fname_out2
 
 
 # In[60]:
@@ -87,7 +89,29 @@ np.savez(npz_fname_out,
      duration_samples=duration_samples,
      period_samples=period_samples)
 
-
+# Filtering
+def denoise(data,inds,rad):
+    data_filt=np.copy(data)
+    for ind in inds:
+#         data_filt[ind-rad:ind+rad+1]=0.5*(data_filt[ind-rad-1]+data_filt[ind+rad+1])
+        data_filt[ind-rad:ind+rad+1]=1e-50
+    return data_filt
+f_int_inds=[50, 105, 185, 214, 225, 230, 235, 245]
+rad=3;
+spectrogram_filt=np.zeros_like(spectrogram)
+for i in range(len(t_axe)):
+    spectrogram_filt[i,:]=denoise(spectrogram[i,:],f_int_inds,rad)
+f_axe_new=np.linspace(-249,250,500)
+spm_inlinef=np.ones((len(f0_ind),len(f_axe_new)))*1e-50
+for i in range(len(f0_ind)):
+    temp=-f0_ind[i]+250
+    spm_inlinef[i,temp:temp+250]=spectrogram_filt[i,:]
+np.savez(npz_fname_out2,
+     spectrogram=spm_inlinef,
+     f_axe=f_axe_new*1000, t_axe=t_axe, nfft=nfft,     
+     duration_samples=duration_samples,
+     period_samples=period_samples)
+     
 # # Site B
 
 # In[65]:
