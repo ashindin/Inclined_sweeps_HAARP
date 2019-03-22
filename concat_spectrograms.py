@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 
 def view_spectrogram_dbshift(t_axe,f_axe,spectrogram,tit='',min_int=-120,max_int=-90,ymin=0,ymax=0,db_shift=0,savefile="",close_fig=False):
-    fig=plt.figure(figsize=(9,6))
+    fig=plt.figure(figsize=(20,6))
     plt.pcolormesh(t_axe,f_axe,10*np.log10(spectrogram.T)+db_shift,vmax=max_int,vmin=min_int,cmap='jet')
     plt.xlim(t_axe[0],t_axe[-1])
     #if ymin==0:
