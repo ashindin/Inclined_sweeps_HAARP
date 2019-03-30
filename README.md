@@ -55,6 +55,10 @@ python3 inline_sweeps.py
 ```bash
 python3 fill_database.py
 ```
+### Process DM SEE feature
+```bash
+python3 dm_proc.py
+```
 ### Figure 1
 ```bash
 python3 figure1.py
