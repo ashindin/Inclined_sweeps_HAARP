@@ -51,6 +51,10 @@ python3 concat_spectrograms.py
 ```bash
 python3 inline_sweeps.py
 ```
+### Create database of spectrograms
+```bash
+python3 fill_database.py
+```
 ### Figure 1
 ```bash
 python3 figure1.py
