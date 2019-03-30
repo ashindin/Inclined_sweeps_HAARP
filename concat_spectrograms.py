@@ -37,17 +37,17 @@ def view_spectrogram_dbshift(t_axe,f_axe,spectrogram,tit='',min_int=-120,max_int
 
 sr=500000; period_samples=int(0.2*sr); duration_samples=int(0.15*sr)
 npz_fnames=[
-'spew_110330_012948_05830_0250_01_01_spm_n250.npz',
-'spew_110330_013028_05830_0250_01_01_spm_n250.npz',
-'spew_110330_013456_05830_0250_01_01_spm_n250.npz',
-'spew_110330_013925_05830_0250_01_01_spm_n250.npz',
-'spew_110330_014353_05830_0250_01_01_spm_n250.npz',
-'spew_110330_014821_05830_0250_01_01_spm_n250.npz',
-'spew_110330_015250_05830_0250_01_01_spm_n250.npz',
-'spew_110330_015718_05830_0250_01_01_spm_n250.npz',
-'spew_110330_020147_05830_0250_01_01_spm_n250.npz',
-'spew_110330_020615_05830_0250_01_01_spm_n250.npz',
-'spew_110330_021044_05830_0250_01_01_spm_n250.npz']
+'spew_110330_012948_05830_0250_01_01_spm_n2500.npz',
+'spew_110330_013028_05830_0250_01_01_spm_n2500.npz',
+'spew_110330_013456_05830_0250_01_01_spm_n2500.npz',
+'spew_110330_013925_05830_0250_01_01_spm_n2500.npz',
+'spew_110330_014353_05830_0250_01_01_spm_n2500.npz',
+'spew_110330_014821_05830_0250_01_01_spm_n2500.npz',
+'spew_110330_015250_05830_0250_01_01_spm_n2500.npz',
+'spew_110330_015718_05830_0250_01_01_spm_n2500.npz',
+'spew_110330_020147_05830_0250_01_01_spm_n2500.npz',
+'spew_110330_020615_05830_0250_01_01_spm_n2500.npz',
+'spew_110330_021044_05830_0250_01_01_spm_n2500.npz']
 nfft=int(npz_fnames[0].split('.')[0].split('_')[-1][1::]) # 250
 npz_fname_out='spectrogram_A_n'+str(nfft)+'.npz'
 png_fname_out='spectrogram_A_n'+str(nfft)+'.png'
@@ -143,15 +143,17 @@ SP.append(spectrogram[0:-t_crop_ind_right])
 
 
 SPCAT=np.vstack((
-    SP[0],np.ones((3,250))*1e-50,SP[1],np.ones((3,250))*1e-50,SP[2],
-    np.ones((2,250))*1e-50,SP[3],
-    np.ones((3,250))*1e-50,SP[4],
-    np.ones((3,250))*1e-50,SP[5],
-    np.ones((3,250))*1e-50,SP[6],
-    np.ones((3,250))*1e-50,SP[7],
-    np.ones((3,250))*1e-50,SP[8],
-    np.ones((3,250))*1e-50,SP[9],
-    np.ones((3,250))*1e-50,SP[10],
+    SP[0],
+    np.ones((3,len(f_axe)))*1e-50,SP[1],
+    np.ones((3,len(f_axe)))*1e-50,SP[2],
+    np.ones((2,len(f_axe)))*1e-50,SP[3],
+    np.ones((3,len(f_axe)))*1e-50,SP[4],
+    np.ones((3,len(f_axe)))*1e-50,SP[5],
+    np.ones((3,len(f_axe)))*1e-50,SP[6],
+    np.ones((3,len(f_axe)))*1e-50,SP[7],
+    np.ones((3,len(f_axe)))*1e-50,SP[8],
+    np.ones((3,len(f_axe)))*1e-50,SP[9],
+    np.ones((3,len(f_axe)))*1e-50,SP[10],
                 ))
 
 SPCAT[138:141,125]=0.19
@@ -198,7 +200,7 @@ np.savez(npz_fname_out,
 
 
 sr=500000; period_samples=int(0.2*sr); duration_samples=int(0.15*sr)
-npz_fnames=['2903201114_spm_n500.npz','2903201115_spm_n500.npz']
+npz_fnames=['2903201114_spm_n5000.npz','2903201115_spm_n5000.npz']
 nfft=int(npz_fnames[0].split('.')[0].split('_')[-1][1::]) # 500
 npz_fname_out='spectrogram_B_n'+str(nfft)+'.npz'
 png_fname_out='spectrogram_B_n'+str(nfft)+'.png'
@@ -263,8 +265,8 @@ np.savez(npz_fname_out,
 
 
 sr=333333; period_samples=32772; duration_samples=11000
-npz_fnames=['rxdsp-haarp-20110330-012352-p01_spm_n333.npz']
-nfft=int(npz_fnames[0].split('.')[0].split('_')[-1][1::]) # 500
+npz_fnames=['rxdsp-haarp-20110330-012352-p01_spm_n3330.npz']
+nfft=int(npz_fnames[0].split('.')[0].split('_')[-1][1::]) # 3330
 npz_fname_out='spectrogram_C_n'+str(nfft)+'.npz'
 png_fname_out='spectrogram_C_n'+str(nfft)+'.png'
 npz_fname_out

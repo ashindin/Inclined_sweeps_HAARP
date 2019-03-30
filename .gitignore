@@ -1,7 +1,7 @@
 # debug jupyter notebooks
 *.ipynb
-# debug python files
-temp_*.py
+# temp files
+temp_*
 
 # numpy data files
 *.npy

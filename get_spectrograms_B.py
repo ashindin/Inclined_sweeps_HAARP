@@ -7,6 +7,8 @@
 import os, sys
 import numpy as np
 import scipy.signal as ss
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 
@@ -100,7 +102,7 @@ bin_fnames=['2903201114.raw','2903201115.raw']
 
 
 sr=500000;bd=16;nc=2;v_range=0.5;
-nfft=500
+nfft=5000
 period_samples=int(0.2*sr)
 duration_samples=int(0.15*sr)
 f_center=np.ones(len(bin_fnames),dtype=np.int)*5780000;

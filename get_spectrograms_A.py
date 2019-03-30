@@ -7,6 +7,8 @@
 import os, sys
 import numpy as np
 import scipy.signal as ss
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 
@@ -133,7 +135,7 @@ start_offsets=np.array([
 # In[18]:
 
 
-nfft=250
+nfft=2500
 period_samples=int(0.2*sr)
 duration_samples=int(0.15*sr)
 

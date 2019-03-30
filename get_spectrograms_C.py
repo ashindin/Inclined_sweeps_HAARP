@@ -7,6 +7,8 @@
 import os, sys
 import numpy as np
 import scipy.signal as ss
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 
@@ -101,7 +103,7 @@ def view_spectrogram_dbshift(t_axe,f_axe,spectrogram,tit='',min_int=-120,max_int
 fname="rxdsp-haarp-20110330-012352-p01.data"
 print(fname)
 bd=16; nc=2; sr=333333; v_range=0.5;
-nfft=333
+nfft=3330
 
 
 # In[9]:
