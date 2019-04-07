@@ -5,7 +5,18 @@ temp_*
 
 # numpy data files
 *.npy
-*.npz
+2903201114_spm_n5000.npz
+2903201115_spm_n5000.npz
+rxdsp-haarp-20110330-012352-p01_spm_n3330.npz
+spectrogram_A_n2500.npz
+spectrogram_B_n5000.npz
+spectrogram_C_n3330.npz
+spectrogram_A_n250.npz
+spectrogram_B_n500.npz
+spectrogram_C_n333.npz
+f0shifted_*.npz
+spew_*.npz
+#*.npz
 
 # figures
 *.pdf
