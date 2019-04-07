@@ -63,3 +63,7 @@ python3 dm_proc.py
 ```bash
 python3 figure1.py
 ```
+### Figure 2
+```bash
+python3 figure2.py
+```
