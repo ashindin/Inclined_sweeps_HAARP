@@ -335,20 +335,22 @@ for angle_ind2 in range(5):
 cb = plt.colorbar(pcm, cax = cbaxes, orientation='horizontal')  
 cbaxes.set_xlabel('Intensity, dB')
 
-axs1[7].text(5985, -10, 'DM', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
+axs1[7].text(5985, -12, 'DM', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
 axs1[7].text(5920, 70, 'BUM', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
-axs1[6].text(5930, 25, 'BUM$_{D}$', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
+axs1[2].text(5920, 25, 'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
+axs1[6].text(5930, 25, 'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
 
 axs1[6].text(5985, 9, 'UM', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
 axs1[6].annotate('', xy=(5890, 9), xycoords='data', xytext=(5950, 9), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=2))
 
-axs1[7].text(5950, 25, 'BUM$_{D}$', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
+axs1[7].text(5950, 25, 'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
 axs1[7].text(5775, 117, '2BUM', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
 
-axs1[7].annotate('', xy=(5890, -9), xycoords='data', xytext=(5950, -9), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=2))
+axs1[7].annotate('', xy=(5890, -11), xycoords='data', xytext=(5950, -11), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=2))
 axs1[7].annotate('', xy=(5775, 90), xycoords='data', xytext=(5775, 110), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=2))
 axs1[7].annotate('', xy=(5790, 50), xycoords='data', xytext=(5870, 70), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=2))
 
+axs1[2].annotate('', xy=(5790, 25), xycoords='data', xytext=(5855, 25), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=2))
 axs1[7].annotate('', xy=(5830, 25), xycoords='data', xytext=(5885, 25), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=2))
 axs1[6].annotate('', xy=(5800, 25), xycoords='data', xytext=(5865, 25), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=2))
 
@@ -385,7 +387,7 @@ for angle_ind2 in range(5):
         bumd_f0= BUMD_F0[angle_ind2*2]
         bumd_freq= BUMD_FREQS[angle_ind2*2]
         bumd_int= BUMD_INT[angle_ind2*2]
-        axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'g',lw=2, label='BUM$_D$/down')
+        axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'g',lw=2, label='BUM$_\mathrm{D}$/down')
         
     if ind==0:
         axs2[ind].plot(dm_f0,dm_int+db_offset[site_ind],'r',lw=2,label='DM/down')
@@ -408,7 +410,7 @@ for angle_ind2 in range(5):
         bumd_freq= BUMD_FREQS[angle_ind2*2+1]
         bumd_int= BUMD_INT[angle_ind2*2+1]        
         if ind==3:
-            axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'c',lw=2,label='BUM$_D$/up')
+            axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'c',lw=2,label='BUM$_\mathrm{D}$/up')
         else:
             axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'c',lw=2)
         
@@ -493,7 +495,7 @@ for angle_ind2 in range(5):
     axs3[ind].set_xticks([5730,5830,5930])
     axs3[ind].set_xlabel('$f_0$, kHz')
     if ind==0:
-        axs3[ind].set_ylabel('$\Delta f$, kHz')
+        axs3[ind].set_ylabel('$\Delta f_{\mathrm{BUM}}$, kHz')
 
     if ind>0:
         axs3[ind].set_yticklabels({''})
