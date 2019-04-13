@@ -510,7 +510,8 @@ fig.text(0.01,0.66-0.05,'b)',horizontalalignment='center', verticalalignment='ce
 fig.text(0.01,0.98,'a)',horizontalalignment='center', verticalalignment='center', fontsize=18)
 
     
-plt.savefig('figure02.pdf',dpi=600)
+plt.savefig('figure2.pdf',dpi=600)
+plt.savefig('figure2.png')
 plt.close()
 # plt.show()
 

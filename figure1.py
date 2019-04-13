@@ -80,5 +80,6 @@ ann_N = ax.annotate('N', Color='k', xy=(125, 120), xycoords='data',
 ann_S = ax.annotate('S', Color='k', xy=(304, 120), xycoords='data',
               xytext=(305,118), textcoords='data',fontsize=16)
 
-plt.savefig('figure1.pdf')
-plt.show()
+plt.savefig('figure1.pdf',dpi=600)
+plt.savefig('figure1.png')
+# ~ plt.show()
