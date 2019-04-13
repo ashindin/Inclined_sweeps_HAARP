@@ -2,6 +2,7 @@
 *.ipynb
 # temp files
 temp_*
+.~*
 
 # numpy data files
 *.npy
