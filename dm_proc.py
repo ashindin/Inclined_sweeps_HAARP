@@ -558,14 +558,12 @@ with PdfPages('dm_proc.pdf') as pdf:
                     axs1.plot(dm_f0,dm_int+db_offset[site_ind],"r",lw=2)
                     axs1.plot([f0_DMmin, f0_DMmin],[-200,0],"k",lw=2)
                     axs1.plot([5730, 5930],[DMmin,DMmin],"k",lw=2)
-                    axs1.plot([5730, 5930],[DMmax,DMmax],"k",lw=2)
-                    axs1.set_ylim([-120,-80])
+                    axs1.plot([5730, 5930],[DMmax,DMmax],"k",lw=2)                    
                     axs1.set_xlim([5730,5930])
                     axs1.set_title("{:.2f}".format(DMmin)+" dB, "+"{:.2f}".format(DMmax)+" dB")
-
                     axs1.plot()
     #                 axs1.set_title(str(np.max(10*np.log10(dm_int[0:50])+db_offset[site_ind])))
-                    axs1.set_ylim([-120,-80])
+                    axs1.set_ylim([-125,-80])
                     axs1.grid()
 
                     axs2 = plt.subplot('133')
