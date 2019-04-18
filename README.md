@@ -33,45 +33,50 @@ All code tested with [Anaconda 2018.12](https://repo.continuum.io/archive/) pyth
 * scipy-1.1.0  
 
 To extract RF data from '\*.DRXS12' files [GNU Octave](https://www.gnu.org/software/octave/) (or Matlab) is requied. Octave code tested with GNU Octave 5.1.0.
+
+### "Run all" bash script with all commands below for Linux OS
+```bash
+bash run_all.sh
+```
 ### Extract RF Data from '\*.DRXS12'
 ```bash
 octave-cli extract_spew.m
 ```
 ### Get PSD spectrograms
 ```bash
-python3 get_spectrograms_A.py
-python3 get_spectrograms_B.py
-python3 get_spectrograms_C.py
+python get_spectrograms_A.py
+python get_spectrograms_B.py
+python get_spectrograms_C.py
 ```
 ### Concatenate spectrograms to get one spectrogram per site
 ```bash
-python3 concat_spectrograms.py
+python concat_spectrograms.py
 ```
 ### Process spectrograms to get f0-shifted spectrograms
 ```bash
-python3 inline_sweeps.py
+python inline_sweeps.py
 ```
 ### Create database of spectrograms
 ```bash
-python3 fill_database.py
+python fill_database.py
 ```
 ### Process DM SEE feature
 ```bash
-python3 dm_proc.py
+python dm_proc.py
 ```
 ### Process BUM SEE feature
 ```bash
-python3 bum_proc.py
+python bum_proc.py
 ```
 ### Figure 1
 ```bash
-python3 figure1.py
+python figure1.py
 ```
 ### Figure 2
 ```bash
-python3 figure2.py
+python figure2.py
 ```
 ### Figure 3
 ```bash
-python3 figure3.py
+python figure3.py
 ```
