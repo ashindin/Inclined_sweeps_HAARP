@@ -5,6 +5,11 @@ Shindin, Alexey. (2019). Properties of Stimulated Electromagnetic Emissions duri
 
 File "raw_data_archive.urls" contains all urls for the data set above.
 
+### "Run all" bash script with all commands below for Linux OS to do all data processing and make all figures
+Scipt below tested in Ubuntu 18.04 with Anaconda 2018.12 python3 distribution on PC (CPU: AMD Ryzen 7 1800X, RAM: 32 GB). On such PC about 30 GB of free disc space is needed and about 48 hours to do all processing.
+```bash
+bash run_all.sh
+```
 ### Download the data
 i.e. using wget:
 ```bash
@@ -34,10 +39,6 @@ All code tested with [Anaconda 2018.12](https://repo.continuum.io/archive/) pyth
 
 To extract RF data from '\*.DRXS12' files [GNU Octave](https://www.gnu.org/software/octave/) (or Matlab) is requied. Octave code tested with GNU Octave 5.1.0.
 
-### "Run all" bash script with all commands below for Linux OS
-```bash
-bash run_all.sh
-```
 ### Extract RF Data from '\*.DRXS12'
 ```bash
 octave-cli extract_spew.m
