@@ -289,9 +289,21 @@ bb=[
 # In[13]:
 
 
-DM_PROC=np.load("dm_proc.npy")
+#DM_PROC=np.load("dm_proc.npy")
+dm_proc_table_fname='dm_proc_100Hz.csv'
+dm_proc_table=np.loadtxt(dm_proc_table_fname,skiprows=1,delimiter=',')
 
-
+step=0
+DM_PROC=[]
+for site_ind in range(3):
+    DM_PROC.append([])
+    for angle_ind in range(9):
+        DM_PROC[site_ind].append([])
+        for dir_ind in range(2):
+            DM_PROC[site_ind][angle_ind].append([])
+            for series_ind in range(2):
+               DM_PROC[site_ind][angle_ind][dir_ind].append((dm_proc_table[step,5],dm_proc_table[step,6],dm_proc_table[step,7],dm_proc_table[step,8]))
+               step+=1
 # In[14]:
 
 
