@@ -84,7 +84,7 @@ proc_files=[
 # In[6]:
 
 
-SPM_DB=np.load(spec_db_file)
+SPM_DB=np.load(spec_db_file, allow_pickle=True)
 
 
 # In[7]:
