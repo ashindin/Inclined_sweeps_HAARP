@@ -22,7 +22,7 @@ def get_k_b(xy1,xy2):
     b=xy1[1]-k*xy1[0]
     return k,b
 def moving_average(a, n):    
-    ret=np.copy(a);
+    ret=np.copy(a)
     for i in range(n//2,len(a)-n//2):
         ret[i]=np.mean(a[i-n//2:i+n//2+1])
     return ret
@@ -165,7 +165,7 @@ for file_ind in [8,9,6,7,4,5,2,3,0,1]:
     dir_ind=int(temp_name[3])
     # site_ind, series_ind, angle_ind, dir_ind
     interference_mask=proc_data['interference_mask']
-    if dir_ind==0: interference_mask=np.flipud(interference_mask);
+    if dir_ind==0: interference_mask=np.flipud(interference_mask)
 
     roi_bum_xy=proc_data['roi_bum_xy']
     roi_bumd_xy=proc_data['roi_bumd_xy']
@@ -177,7 +177,7 @@ for file_ind in [8,9,6,7,4,5,2,3,0,1]:
     f0_axe=SPM_DB[site_ind][angle_ind][dir_ind][session_ind][0]
     f_axe=SPM_DB[site_ind][angle_ind][dir_ind][session_ind][1]
     if dir_ind==0: 
-        spec_filt=np.flipud(spec_filt);
+        spec_filt=np.flipud(spec_filt)
         f0_axe=np.flip(f0_axe)
 
     bum_ranges=get_see_ranges(roi_bum_xy)      
@@ -323,7 +323,8 @@ for i in range(len(bb)):
 cbaxes = plt.axes([0.060000000000000005, 0.05+0.269*2+0.10-0.02, 0.9769152542372881-0.060000000000000005, 0.05/3]) 
 
 angle_inds=[8,6,4,2,0]
-site_ind=0;  series_ind=1;
+site_ind=0
+series_ind=1
 for angle_ind2 in range(5):
     for dir_ind in range(2):
         angle_ind=angle_inds[angle_ind2]        
@@ -336,7 +337,7 @@ for angle_ind2 in range(5):
         axs1[ind].set_xlim([5930,5730])
         axs1[ind].set_xticks([5930])
         if ind==0:
-            axs1[ind].set_ylabel('$\Delta f$, kHz')
+            axs1[ind].set_ylabel(r'$\Delta f$, kHz')
         
         if ind>0:
             axs1[ind].set_yticks([])
@@ -349,13 +350,13 @@ cbaxes.set_xlabel('Intensity, dB')
 
 axs1[7].text(5985, -12, 'DM', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
 axs1[7].text(5920, 70, 'BUM', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
-axs1[2].text(5920, 25, 'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
-axs1[6].text(5930, 25, 'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
+axs1[2].text(5920, 25, r'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
+axs1[6].text(5930, 25, r'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
 
 axs1[6].text(5985, 9, 'UM', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
 axs1[6].annotate('', xy=(5890, 9), xycoords='data', xytext=(5950, 9), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=2))
 
-axs1[7].text(5950, 25, 'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
+axs1[7].text(5950, 25, r'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
 axs1[7].text(5775, 117, '2BUM', {'ha': 'center', 'va': 'center'}, rotation=0, fontsize=text_size, backgroundcolor='w')
 
 axs1[7].annotate('', xy=(5890, -11), xycoords='data', xytext=(5950, -11), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=2))
@@ -381,13 +382,14 @@ for i in range(0,len(bb),2):
     axs2.append(plt.axes(position=[bb[i][0]+0.02-i_sh*i,bb[i][1]+0.267-0.08-0.03,bb[i][2]*2-0.008,bb[i][3]/3]))
 
 angle_inds=[8,6,4,2,0]
-site_ind=0;  series_ind=1;
+site_ind=0
+series_ind=1
 for angle_ind2 in range(5):
                 
     angle_ind=angle_inds[angle_ind2]
     ind=angle_ind2
     
-    dir_ind=0;
+    dir_ind=0
     dm_f0= DM_F0[angle_ind2*2]
     dm_freq= DM_FREQS[angle_ind2*2]
     dm_int= DM_INT[angle_ind2*2]
@@ -399,7 +401,7 @@ for angle_ind2 in range(5):
         bumd_f0= BUMD_F0[angle_ind2*2]
         bumd_freq= BUMD_FREQS[angle_ind2*2]
         bumd_int= BUMD_INT[angle_ind2*2]
-        axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'g',lw=2, label='BUM$_\mathrm{D}$/down')
+        axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'g',lw=2, label=r'BUM$_\mathrm{D}$/down')
         
     if ind==0:
         axs2[ind].plot(dm_f0,dm_int+db_offset[site_ind],'r',lw=2,label='DM/down')
@@ -408,7 +410,7 @@ for angle_ind2 in range(5):
         axs2[ind].plot(dm_f0,dm_int+db_offset[site_ind],'r',lw=2)
         axs2[ind].plot(bum_f0,bum_int+db_offset[site_ind],'m',lw=2)
     
-    dir_ind=1;
+    dir_ind=1
     
     dm_f0= DM_F0[angle_ind2*2+1]
     dm_freq= DM_FREQS[angle_ind2*2+1]
@@ -422,7 +424,7 @@ for angle_ind2 in range(5):
         bumd_freq= BUMD_FREQS[angle_ind2*2+1]
         bumd_int= BUMD_INT[angle_ind2*2+1]        
         if ind==3:
-            axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'c',lw=2,label='BUM$_\mathrm{D}$/up')
+            axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'c',lw=2,label=r'BUM$_\mathrm{D}$/up')
         else:
             axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'c',lw=2)
         
@@ -451,13 +453,16 @@ for i in range(0,len(bb),2):
     axs3.append(plt.axes(position=[bb[i][0]+0.02-i_sh*i,bb[i][1]-0.08-0.05,bb[i][2]*2-0.008,bb[i][3]/3]))
 
 angle_inds=[8,6,4,2,0]
-site_ind=0;  series_ind=1;
+
+site_ind=0
+series_ind=1
+
 for angle_ind2 in range(5):
                 
     angle_ind=angle_inds[angle_ind2]
     ind=angle_ind2
     
-    dir_ind=0;
+    dir_ind=0
     dm_f0= DM_F0[angle_ind2*2]
     dm_freq= DM_FREQS[angle_ind2*2]
     dm_int= DM_INT[angle_ind2*2]
@@ -474,7 +479,7 @@ for angle_ind2 in range(5):
     axs3[ind].plot(bum_f0,bum_freq,color=(0.75, 0.0, 0.75, .5),lw=1)
     axs3[ind].plot(bum_f0,bum_freq,'m',lw=1)
     
-    dir_ind=1;
+    dir_ind=1
     dm_f0= DM_F0[angle_ind2*2+1]
     dm_freq= DM_FREQS[angle_ind2*2+1]
     dm_int= DM_INT[angle_ind2*2+1]
@@ -507,7 +512,7 @@ for angle_ind2 in range(5):
     axs3[ind].set_xticks([5730,5830,5930])
     axs3[ind].set_xlabel('$f_0$, kHz')
     if ind==0:
-        axs3[ind].set_ylabel('$\Delta f_{\mathrm{BUM}}$, kHz')
+        axs3[ind].set_ylabel(r'$\Delta f_{\mathrm{BUM}}$, kHz')
 
     if ind>0:
         axs3[ind].set_yticklabels({''})

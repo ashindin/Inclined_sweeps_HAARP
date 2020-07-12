@@ -103,7 +103,7 @@ axs[1][0].grid()
 axs[1][0].set_xlabel(r'$\alpha$, $^\circ$')
 axs[1][0].set_ylabel('BUM intensity, dB')
 
-axs[1][1].set_ylabel('$\delta f_{\mathrm{BUMmax}}$, kHz')
+axs[1][1].set_ylabel(r'$\delta f_{\mathrm{BUMmax}}$, kHz')
 
 axs[1][1].plot(fig3_x_axe,fig3_dfBUMmax_A,'bs-')
 axs[1][1].plot(fig3_x_axe,fig3_dfBUMmax_B,'rs-')
