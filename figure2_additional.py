@@ -48,43 +48,75 @@ for site_ind in range(3):
                 BUM_NOISE_DB[site_ind][angle_ind][dir_ind].append([])                
                 BUMD_NOISE_DB[site_ind][angle_ind][dir_ind].append([])                
 
-site_ind=0; series_ind=1; angle_ind=0; dir_ind=0;
+site_ind=0
+series_ind=1
+angle_ind=0
+dir_ind=0
 DM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5761.,5762., 5763.,5764.,5765.,5777.,5837.,5927.]
 BUM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5824.,5825.,5826.,5827.,5828.,5829.,5830.,5832.,5833.,5835.,5836.,5837.,5838.]
-site_ind=0; series_ind=1; angle_ind=0; dir_ind=1;
+site_ind=0
+series_ind=1
+angle_ind=0 
+dir_ind=1
 DM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5843.,5761.,5762.,5763.,5764.]
 BUM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5833.,5834.,5827.,5829.,5830.,5831.,5832.,5835.,5836.,5837.,5838.]
 
-site_ind=0; series_ind=1; angle_ind=2; dir_ind=0;
+site_ind=0
+series_ind=1
+angle_ind=2
+dir_ind=0
 DM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5762.,5763.,5764.,5765.,5766.,5767.]
 # BUM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5824.,5825.,5826.,5827.,5828.,5829.,5830.,5832.,5833.,5835.,5836.,5837.,5838.]
 BUMD_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5779.,  5780.,  5781., 5782.]
 
-site_ind=0; series_ind=1; angle_ind=2; dir_ind=1;
+site_ind=0
+series_ind=1
+angle_ind=2
+dir_ind=1
 DM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5762.,5763.,5764.,5765.]
 BUM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5807.]
 # BUMD_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=np.hstack((np.arange(5842.,5860.,1.),np.arange(5885.,5930.,1.)))
 BUMD_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=np.arange(5885.,5887.,1.)
 
 
-site_ind=0; series_ind=1; angle_ind=4; dir_ind=0;
+site_ind=0
+series_ind=1
+angle_ind=4
+dir_ind=0
 DM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5927.,5761.,5762.,5763.,5764.,5765.]
 BUM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5845.,5846.,5847.,5848.,5849.,5850.,5851.,5852.,5853.,5854.]
-site_ind=0; series_ind=1; angle_ind=4; dir_ind=1;
+site_ind=0
+series_ind=1
+angle_ind=4
+dir_ind=1
 DM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5764.,5765.,5766.]
 BUM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5845.,5846.,5847.,5848.,5849.,5850.,5851.,5852.,5853.,5854.]
 
-site_ind=0; series_ind=1; angle_ind=6; dir_ind=0;
+site_ind=0
+series_ind=1
+angle_ind=6
+dir_ind=0
 DM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5929.,5930.,5762.,5764.,5765.,5769.]
 BUM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5834.,5835.,5836.,5837.,5838.,5839.,5840.,5841.,5842.,5843.,5844.,5845.,5846.,5847.,5848.,5849.,5850.,5851.,5852.]
-site_ind=0; series_ind=1; angle_ind=6; dir_ind=1;
+
+site_ind=0
+series_ind=1
+angle_ind=6 
+dir_ind=1
 DM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5762.,5763.,5764.,5765.,5766.,5767.,5768.,5769.]
 BUM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5834.,5835.,5836.,5837.,5838.,5839.,5840.,5841.,5842.,5843.,5844.,5845.,5846.,5847.,5848.,5849.,5850.,5851.,5852.]
 
-site_ind=0; series_ind=1; angle_ind=8; dir_ind=0;
+site_ind=0
+series_ind=1
+angle_ind=8
+dir_ind=0
 DM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5761.,5762.,5763.,5764.,5765.,5766.,5767.,5768.,5769.,5823.,5929.]
 BUM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5778.]
-site_ind=0; series_ind=1; angle_ind=8; dir_ind=1;
+
+site_ind=0
+series_ind=1
+angle_ind=8
+dir_ind=1
 DM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5858.,5917.,5819.,5820.,5821.,5822.,5761.,5762.,5763.,5764.,5765.,5766.,5767.,5768.,5769.]
 BUM_NOISE_DB[site_ind][angle_ind][dir_ind][series_ind]=[5754.,5755.,5756.,5757.,5758.,5759.,5760.,5761.]
 
@@ -111,7 +143,7 @@ for i in range(18):
         axs1[-1].set_xticks([5.930])
     if i==0: 
         axs1[-1].set_yticks([0,25,50,75,100,125,150])
-        axs1[-1].set_ylabel('$\Delta f$, kHz')
+        axs1[-1].set_ylabel(r'$\Delta f$, kHz')
     else:
         axs1[-1].set_yticks([])
     axs1[-1].set_ylim(-25,150)
@@ -148,7 +180,7 @@ for i in range(9):
     axs3.append(plt.axes((left_board + i*x_shift_2, bottom_3, width_2, height_1)))
     if i==0: 
         axs3[-1].set_yticks([0,20,40,60,80,100])
-        axs3[-1].set_ylabel('$\Delta f$, kHz')
+        axs3[-1].set_ylabel(r'$\Delta f$, kHz')
     else:
         axs3[-1].set_yticks([])
     axs3[-1].set_xlabel('$f_0$, MHz')
@@ -234,7 +266,7 @@ for angle_ind2 in range(9):
         axs2[ind].plot(dm_f0/1000,10*np.log10(dm_int)+db_offset[site_ind],'r',lw=1)
         axs2[ind].plot(bum_f0/1000,10*np.log10(bum_int)+db_offset[site_ind],'m',lw=1)
     
-    dir_ind=1;
+    dir_ind=1
     dm_f0= DM_DB[site_ind][angle_ind][dir_ind][series_ind][:,0]
     dm_freq= DM_DB[site_ind][angle_ind][dir_ind][series_ind][:,1]
     dm_int= DM_DB[site_ind][angle_ind][dir_ind][series_ind][:,2]
@@ -284,7 +316,7 @@ for angle_ind2 in range(9):
     angle_ind=angle_inds[angle_ind2]
     ind=angle_ind2
     
-    dir_ind=0;
+    dir_ind=0
     dm_f0= DM_DB[site_ind][angle_ind][dir_ind][series_ind][:,0]
     dm_freq= DM_DB[site_ind][angle_ind][dir_ind][series_ind][:,1]
     dm_int= DM_DB[site_ind][angle_ind][dir_ind][series_ind][:,2]
@@ -323,7 +355,7 @@ for angle_ind2 in range(9):
     axs3[ind].plot(bum_f0/1000,bum_freq/1000,'m',lw=1)
     
     
-    dir_ind=1;
+    dir_ind=1
     dm_f0= DM_DB[site_ind][angle_ind][dir_ind][series_ind][:,0]
     dm_freq= DM_DB[site_ind][angle_ind][dir_ind][series_ind][:,1]
     dm_int= DM_DB[site_ind][angle_ind][dir_ind][series_ind][:,2]
