@@ -127,7 +127,7 @@ db_offset=[-8.7,0,-2.5]
 
 
 spec_db_file="spm_database_100Hz.npy"
-SPM_DB=np.load(spec_db_file)
+SPM_DB=np.load(spec_db_file, allow_pickle=True)
 
 
 # In[10]:
