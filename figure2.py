@@ -1,10 +1,21 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[1]:
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+# In[2]:
+
+
 plt.rcParams.update({'font.size': 18})
+
+
+# In[3]:
+
 
 def get_k_b(xy1,xy2):
     k=(xy2[1]-xy1[1])/(xy2[0]-xy1[0])
@@ -44,7 +55,15 @@ def get_see_ranges(roi_xy):
         bum_ranges.append((f,sorted(dfs)))
     return bum_ranges
 
+
+# In[4]:
+
+
 db_offset=[-8.7,0,-2.5]
+
+
+# In[5]:
+
 
 spec_db_file="spm_database_100Hz.npy"
 spec_file="spectrogram_A_n2500.npz"
@@ -61,7 +80,15 @@ proc_files=[
     'proc_0181.npz',
 ]
 
-SPM_DB=np.load(spec_db_file)
+
+# In[6]:
+
+
+SPM_DB=np.load(spec_db_file, allow_pickle=True)
+
+
+# In[7]:
+
 
 data=np.load(spec_file)
 spectrogram=data['spectrogram']
@@ -90,12 +117,32 @@ k,b=get_k_b([348,temp[348]],[352,temp[352]]); temp[349:352]=np.array(range(349,3
 temp=moving_average(temp, 11)
 temp=temp[0:351]
 
+
+# In[8]:
+
+
 for angle_ind in range(9):
     for dir_ind in range(2):
         for session_ind in range(2):            
             for i in range(len(SPM_DB[0][angle_ind][dir_ind][session_ind][0])):
                 ind=np.where(SPM_DB[0][angle_ind][dir_ind][session_ind][2][i,0:2500]==1e-50)[0][-1]+1
                 SPM_DB[0][angle_ind][dir_ind][session_ind][2][i,ind:ind+351]=SPM_DB[0][angle_ind][dir_ind][session_ind][2][i,ind:ind+351]/temp
+
+
+# In[9]:
+
+
+# %matplotlib notebook
+
+
+# In[10]:
+
+
+# %matplotlib inline
+
+
+# In[11]:
+
 
 DM_F0, DM_INT, DM_FREQS =[],[],[]
 BUM_F0, BUM_INT, BUM_FREQS =[],[],[]
@@ -221,6 +268,10 @@ for file_ind in [8,9,6,7,4,5,2,3,0,1]:
     # ~ if angle_ind in [1,2,3]: plt.plot(bumd_f0,bumd_int+db_offset[site_ind],'g')
     # ~ plt.show()
 
+
+# In[12]:
+
+
 bb=[
  [0.05,                0.19999999999999996, 0.13042372881355932-0.05, 0.95-0.19999999999999996],
  [0.1345084745762712,  0.19999999999999996, 0.2149322033898305-0.1345084745762712, 0.95-0.19999999999999996],
@@ -233,6 +284,10 @@ bb=[
  [0.8220677966101695,  0.19999999999999996, 0.9024915254237288-0.8220677966101695, 0.95-0.19999999999999996],
  [0.9065762711864407,  0.19999999999999996, 0.987-0.9065762711864407,              0.95-0.19999999999999996]
 ]
+
+
+# In[13]:
+
 
 #DM_PROC=np.load("dm_proc.npy")
 dm_proc_table_fname='dm_proc_100Hz.csv'
@@ -249,7 +304,10 @@ for site_ind in range(3):
             for series_ind in range(2):
                DM_PROC[site_ind][angle_ind][dir_ind].append((dm_proc_table[step,5],dm_proc_table[step,6],dm_proc_table[step,7],dm_proc_table[step,8]))
                step+=1
+# In[14]:
 
+
+# %matplotlib inline
 text_size=16
 dx=0.011
 fig=plt.figure(figsize=(16,15))
@@ -265,7 +323,7 @@ for i in range(len(bb)):
 cbaxes = plt.axes([0.060000000000000005, 0.05+0.269*2+0.10-0.02, 0.9769152542372881-0.060000000000000005, 0.05/3]) 
 
 angle_inds=[8,6,4,2,0]
-site_ind=0 
+site_ind=0
 series_ind=1
 for angle_ind2 in range(5):
     for dir_ind in range(2):
@@ -324,7 +382,7 @@ for i in range(0,len(bb),2):
     axs2.append(plt.axes(position=[bb[i][0]+0.02-i_sh*i,bb[i][1]+0.267-0.08-0.03,bb[i][2]*2-0.008,bb[i][3]/3]))
 
 angle_inds=[8,6,4,2,0]
-site_ind=0 
+site_ind=0
 series_ind=1
 for angle_ind2 in range(5):
                 
@@ -395,8 +453,10 @@ for i in range(0,len(bb),2):
     axs3.append(plt.axes(position=[bb[i][0]+0.02-i_sh*i,bb[i][1]-0.08-0.05,bb[i][2]*2-0.008,bb[i][3]/3]))
 
 angle_inds=[8,6,4,2,0]
-site_ind=0 
+
+site_ind=0
 series_ind=1
+
 for angle_ind2 in range(5):
                 
     angle_ind=angle_inds[angle_ind2]
@@ -470,3 +530,5 @@ fig.text(0.01,0.98,'a)',horizontalalignment='center', verticalalignment='center'
 plt.savefig('figure2.pdf',dpi=600)
 plt.savefig('figure2.png')
 plt.close()
+# plt.show()
+
