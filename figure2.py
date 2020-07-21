@@ -61,15 +61,7 @@ proc_files=[
     'proc_0181.npz',
 ]
 
-<<<<<<< HEAD
-SPM_DB=np.load(spec_db_file)
-=======
-
-# In[6]:
-
-
 SPM_DB=np.load(spec_db_file, allow_pickle=True)
->>>>>>> 9f679e73cb536de69ac420d9cb49b3b7cb336fec
 
 data=np.load(spec_file)
 spectrogram=data['spectrogram']
@@ -273,11 +265,7 @@ for i in range(len(bb)):
 cbaxes = plt.axes([0.060000000000000005, 0.05+0.269*2+0.10-0.02, 0.9769152542372881-0.060000000000000005, 0.05/3]) 
 
 angle_inds=[8,6,4,2,0]
-<<<<<<< HEAD
 site_ind=0 
-=======
-site_ind=0
->>>>>>> 9f679e73cb536de69ac420d9cb49b3b7cb336fec
 series_ind=1
 for angle_ind2 in range(5):
     for dir_ind in range(2):
@@ -336,11 +324,7 @@ for i in range(0,len(bb),2):
     axs2.append(plt.axes(position=[bb[i][0]+0.02-i_sh*i,bb[i][1]+0.267-0.08-0.03,bb[i][2]*2-0.008,bb[i][3]/3]))
 
 angle_inds=[8,6,4,2,0]
-<<<<<<< HEAD
 site_ind=0 
-=======
-site_ind=0
->>>>>>> 9f679e73cb536de69ac420d9cb49b3b7cb336fec
 series_ind=1
 for angle_ind2 in range(5):
                 
@@ -411,15 +395,8 @@ for i in range(0,len(bb),2):
     axs3.append(plt.axes(position=[bb[i][0]+0.02-i_sh*i,bb[i][1]-0.08-0.05,bb[i][2]*2-0.008,bb[i][3]/3]))
 
 angle_inds=[8,6,4,2,0]
-<<<<<<< HEAD
 site_ind=0 
 series_ind=1
-=======
-
-site_ind=0
-series_ind=1
-
->>>>>>> 9f679e73cb536de69ac420d9cb49b3b7cb336fec
 for angle_ind2 in range(5):
                 
     angle_ind=angle_inds[angle_ind2]
