@@ -9,7 +9,7 @@ xlsx_filename='Data_1_5.83.xlsx'
 table=pd.read_excel(xlsx_filename, index_col=None, header=None) 
 
 Ex, Ey, Ez, h, X, T, n2, labs =[],[],[],[],[],[],[],[]
-for i in range(7):
+for i in range(9):
     Ex.append(table[0+i*9][1::].values.astype(float))
     Ey.append(table[1+i*9][1::].values.astype(float))
     Ez.append(table[2+i*9][1::].values.astype(float))
