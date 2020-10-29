@@ -3,6 +3,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.signal as ss
 
 db_offset=[-8.7,0,-2.5]
 angle={0:"+28°",1:"+21°",2:"+14°",3:"+7°",4:"0°",5:"-7°",6:"-14°",7:"-21°",8:"-28°"}
@@ -378,25 +379,25 @@ for angle_ind2 in range(9):
         bumd_freq= BUMD_FREQS[angle_ind2*2]
         bumd_int= BUMD_INT[angle_ind2*2]
         if ind==5:
-            axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'g',lw=1, label=r'BUM$_\mathrm{D}$/d')
+            axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],3),'g',lw=1, label=r'BUM$_\mathrm{D}$/d')
         else:
-            axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'g',lw=1)
+            axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],3),'g',lw=1)
         
     if ind==0:
-        axs2[ind].plot(dm_f0,dm_int+db_offset[site_ind],'r',lw=1,label='DM/d')
-        axs2[ind].plot(bum_f0,bum_int+db_offset[site_ind],'m',lw=1,label='BUM/d')
+        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[site_ind],3),'r',lw=1,label='DM/d')
+        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[site_ind],3),'m',lw=1,label='BUM/d')
     else:
-        axs2[ind].plot(dm_f0,dm_int+db_offset[site_ind],'r',lw=1)
-        axs2[ind].plot(bum_f0,bum_int+db_offset[site_ind],'m',lw=1)
+        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[site_ind],3),'r',lw=1)
+        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[site_ind],3),'m',lw=1)
     
     if angle_ind in [0,1,2,3,4,5,6,7]:
         bum2_f0= BUM2_F0[angle_ind2*2]
         bum2_freq= BUM2_FREQS[angle_ind2*2]
         bum2_int= BUM2_INT[angle_ind2*2]
         if ind==1:
-            axs2[ind].plot(bum2_f0,bum2_int+db_offset[site_ind],'y',lw=1, label=r'2BUM/d')
+            axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],3),'y',lw=1, label=r'2BUM/d')
         else:
-            axs2[ind].plot(bum2_f0,bum2_int+db_offset[site_ind],'y',lw=1)
+            axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],3),'y',lw=1)
 
     dir_ind=1
     
@@ -424,26 +425,26 @@ for angle_ind2 in range(9):
         bumd_freq= BUMD_FREQS[angle_ind2*2+1]
         bumd_int= BUMD_INT[angle_ind2*2+1]        
         if ind==5:
-            axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'c',lw=1,label=r'BUM$_\mathrm{D}$/u')
+            axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],3),'c',lw=1,label=r'BUM$_\mathrm{D}$/u')
         else:
-            axs2[ind].plot(bumd_f0,bumd_int+db_offset[site_ind],'c',lw=1)
+            axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],3),'c',lw=1)
     
     if angle_ind in [0,1,2,3,4,5,6,7]:
         bum2_f0= BUM2_F0[angle_ind2*2+1]
         bum2_freq= BUM2_FREQS[angle_ind2*2+1]
         bum2_int= BUM2_INT[angle_ind2*2+1]
         if ind==1:
-            axs2[ind].plot(bum2_f0,bum2_int+db_offset[site_ind],'orange',lw=1, label=r'2BUM/u')
+            axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],3),'orange',lw=1, label=r'2BUM/u')
         else:
-            axs2[ind].plot(bum2_f0,bum2_int+db_offset[site_ind],'orange',lw=1)
+            axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],3),'orange',lw=1)
 
     if ind==0:
-        axs2[ind].plot(dm_f0,dm_int+db_offset[site_ind],'b',lw=1, label= 'DM/u')
-        axs2[ind].plot(bum_f0,bum_int+db_offset[site_ind],'k',lw=1, label= 'BUM/u')
+        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[site_ind],3),'b',lw=1, label= 'DM/u')
+        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[site_ind],3),'k',lw=1, label= 'BUM/u')
         axs2[ind].set_ylabel("SEE intensity, dB", labelpad=0)
     else:
-        axs2[ind].plot(dm_f0,dm_int+db_offset[site_ind],'b',lw=1)
-        axs2[ind].plot(bum_f0,bum_int+db_offset[site_ind],'k',lw=1)
+        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[site_ind],3),'b',lw=1)
+        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[site_ind],3),'k',lw=1)
     
     axs2[ind].set_xlim([5700,5930])
     axs2[ind].set_xticks([5730,5830,5930])
