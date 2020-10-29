@@ -360,6 +360,19 @@ for angle_ind2 in range(9):
     bum_freq= BUM_FREQS[angle_ind2*2]
     bum_int= BUM_INT[angle_ind2*2]
 
+    if site_ind == 1 and series_ind == 1 and angle_ind in [5, 6, 7, 8]:
+        f_cut = np.loadtxt('f_cut')
+        colname = float(str(site_ind) + str(series_ind) + str(angle_ind) + str(dir_ind))
+        for ind_cut in range(len(f_cut)):
+            if f_cut[ind_cut, 0] == colname:
+                f_cut1 = f_cut[ind_cut, 1]
+                f_cut2 = f_cut[ind_cut, 2]
+                break
+        bum_freq_cut1_ind = np.argmin(np.abs(bum_f0-f_cut1))
+        bum_freq_cut2_ind = np.argmin(np.abs(bum_f0-f_cut2))
+        bum_int[bum_freq_cut1_ind:bum_freq_cut2_ind] = np.nan
+        
+
     if angle_ind in [1,2,3]:     
         bumd_f0= BUMD_F0[angle_ind2*2]
         bumd_freq= BUMD_FREQS[angle_ind2*2]
@@ -394,6 +407,18 @@ for angle_ind2 in range(9):
     bum_freq= BUM_FREQS[angle_ind2*2+1]
     bum_int= BUM_INT[angle_ind2*2+1]
     
+    if site_ind == 1 and series_ind == 1 and angle_ind in [5, 6, 7, 8]:
+        f_cut = np.loadtxt('f_cut')
+        colname = float(str(site_ind) + str(series_ind) + str(angle_ind) + str(dir_ind))
+        for ind_cut in range(len(f_cut)):
+            if f_cut[ind_cut, 0] == colname:
+                f_cut1 = f_cut[ind_cut, 1]
+                f_cut2 = f_cut[ind_cut, 2]
+                break
+        bum_freq_cut1_ind = np.argmin(np.abs(bum_f0-f_cut1))
+        bum_freq_cut2_ind = np.argmin(np.abs(bum_f0-f_cut2))
+        bum_int[bum_freq_cut1_ind:bum_freq_cut2_ind] = np.nan
+
     if angle_ind in [1,2,3]:    
         bumd_f0= BUMD_F0[angle_ind2*2+1]
         bumd_freq= BUMD_FREQS[angle_ind2*2+1]
