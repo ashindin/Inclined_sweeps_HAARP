@@ -8,23 +8,23 @@ import scipy.signal as ss
 db_offset=[-8.7,0,-2.5]
 angle={0:"+28°",1:"+21°",2:"+14°",3:"+7°",4:"0°",5:"-7°",6:"-14°",7:"-21°",8:"-28°"}
 
-spec_db_file="spm_database_100Hz.npy"
-spec_file="spectrogram_A_n2500.npz"
+# spec_db_file="spm_database_100Hz.npy"
+# spec_file="spectrogram_A_n2500.npz"
 
-dm_proc_table_fname='dm_proc_100Hz.csv'
-dm_proc_table=np.loadtxt(dm_proc_table_fname,skiprows=1,delimiter=',')
+# dm_proc_table_fname='dm_proc_100Hz.csv'
+# dm_proc_table=np.loadtxt(dm_proc_table_fname,skiprows=1,delimiter=',')
 
-step=0
-DM_PROC=[]
-for site_ind in range(3):
-    DM_PROC.append([])
-    for angle_ind in range(9):
-        DM_PROC[site_ind].append([])
-        for dir_ind in range(2):
-            DM_PROC[site_ind][angle_ind].append([])
-            for series_ind in range(2):
-                DM_PROC[site_ind][angle_ind][dir_ind].append((dm_proc_table[step,5],dm_proc_table[step,6],dm_proc_table[step,7],dm_proc_table[step,8]))
-                step+=1
+# step=0
+# DM_PROC=[]
+# for site_ind in range(3):
+#     DM_PROC.append([])
+#     for angle_ind in range(9):
+#         DM_PROC[site_ind].append([])
+#         for dir_ind in range(2):
+#             DM_PROC[site_ind][angle_ind].append([])
+#             for series_ind in range(2):
+#                 DM_PROC[site_ind][angle_ind][dir_ind].append((dm_proc_table[step,5],dm_proc_table[step,6],dm_proc_table[step,7],dm_proc_table[step,8]))
+#                 step+=1
 
 # plt.rcParams.update({'font.size': 18})
 def get_k_b(xy1,xy2):
@@ -68,31 +68,31 @@ SITE = 1
 SERIES = 1
 # for SITE in range(3):
     # for SERIES in range(2):
-
 proc_files=[
-    '../2803/proc_'+'MZ'+'1d.npz',
-    '../2803/proc_'+'MZ'+'2d.npz',
-    '../2803/proc_'+'MZ'+'3d.npz',
-    '../2803/proc_'+'MZ'+'4d.npz',
-    '../2803/proc_'+'MZ'+'5d.npz',
-    '../2803/proc_'+'MZ'+'1u.npz',
-    '../2803/proc_'+'MZ'+'2u.npz',
-    '../2803/proc_'+'MZ'+'3u.npz',
-    '../2803/proc_'+'MZ'+'4u.npz',
-    '../2803/proc_'+'MZ'+'5u.npz',
+    '../2803/proc_'+'MZ'+'_5u.npz',
+    '../2803/proc_'+'MZ'+'_5d.npz',
+    '../2803/proc_'+'MZ'+'_4u.npz',
+    '../2803/proc_'+'MZ'+'_4d.npz',
+    '../2803/proc_'+'MZ'+'_3u.npz',
+    '../2803/proc_'+'MZ'+'_3d.npz',
+    '../2803/proc_'+'MZ'+'_2u.npz',
+    '../2803/proc_'+'MZ'+'_2d.npz',
+    '../2803/proc_'+'MZ'+'_1u.npz',    
+    '../2803/proc_'+'MZ'+'_1d.npz',
+
 ]
 
 spm_files=[
-    '../2803/MZ_100Hz_1d_inline.npz',
-    '../2803/MZ_100Hz_2d_inline.npz',
-    '../2803/MZ_100Hz_3d_inline.npz',
-    '../2803/MZ_100Hz_4d_inline.npz',
-    '../2803/MZ_100Hz_5d_inline.npz',
-    '../2803/MZ_100Hz_1u_inline.npz',
-    '../2803/MZ_100Hz_2u_inline.npz',
-    '../2803/MZ_100Hz_3u_inline.npz',
-    '../2803/MZ_100Hz_4u_inline.npz',
     '../2803/MZ_100Hz_5u_inline.npz',
+    '../2803/MZ_100Hz_5d_inline.npz',
+    '../2803/MZ_100Hz_4u_inline.npz',
+    '../2803/MZ_100Hz_4d_inline.npz',
+    '../2803/MZ_100Hz_3u_inline.npz',
+    '../2803/MZ_100Hz_3d_inline.npz',
+    '../2803/MZ_100Hz_2u_inline.npz',
+    '../2803/MZ_100Hz_2d_inline.npz',
+    '../2803/MZ_100Hz_1u_inline.npz',
+    '../2803/MZ_100Hz_1d_inline.npz',
 ]
 # SPM_DB=np.load(spec_db_file, allow_pickle=True)
 
@@ -138,6 +138,9 @@ BUM_F0, BUM_INT, BUM_FREQS =[],[],[]
 BUMD_F0, BUMD_INT, BUMD_FREQS =[],[],[]
 BUM2_F0, BUM2_INT, BUM2_FREQS =[],[],[]
 
+spec_log_list = []
+f0_axe_list = []
+f_axe_list = []
 for file_ind in range(10):
 
     filename=proc_files[file_ind]
@@ -163,12 +166,16 @@ for file_ind in range(10):
     spectrogram=data['spectrogram']
     # spectrogram=SPM_DB[site_ind][angle_ind][dir_ind][session_ind][2]
     spec_log=10*np.log10(spectrogram)
+    spec_log_list.append(spec_log)
     spec_filt=spec_log*(1-interference_mask)-200*interference_mask
     # f0_axe=SPM_DB[site_ind][angle_ind][dir_ind][session_ind][0]
     # f_axe=SPM_DB[site_ind][angle_ind][dir_ind][session_ind][1]
     f0_axe = data['t_axe']
+    f0_axe_list.append(f0_axe)
     f_axe = data['f_axe']
+    f_axe_list.append(f_axe)
     
+
     if dir_ind==0: 
         spec_filt=np.flipud(spec_filt)
         f0_axe=np.flip(f0_axe)
@@ -193,6 +200,7 @@ for file_ind in range(10):
     bumd_int=np.ones(len(bumd_ranges))*np.nan
     bumd_f0=np.zeros(len(bumd_ranges))
     bumd_freqs=np.ones(len(bumd_ranges))*np.nan
+
     for j in range(len(bumd_ranges)):
         f0=bumd_ranges[j][0]
         f0_ind=np.where(np.abs(f0_axe-f0)==np.min(np.abs(f0_axe-f0)))[0][0]
@@ -237,20 +245,20 @@ for file_ind in range(10):
         dm_freqs[j]=f_axe[df_min_ind+np.argmax(spec_filt[f0_ind,df_min_ind:df_max_ind+1],axis=0)]/1000        
     DM_F0.append(dm_f0), DM_INT.append(dm_int), DM_FREQS.append(dm_freqs)
     
-    if site_ind==0 and series_ind==1 and angle_ind==0 and dir_ind==0:
-        dm_f0[np.where(dm_f0==5777.)]=np.nan
-        dm_f0[np.where(dm_f0==5837.)]=np.nan
-        dm_f0[np.where(dm_f0==5927.)]=np.nan
+    # if site_ind==0 and series_ind==1 and angle_ind==0 and dir_ind==0:
+    #     dm_f0[np.where(dm_f0==5777.)]=np.nan
+    #     dm_f0[np.where(dm_f0==5837.)]=np.nan
+    #     dm_f0[np.where(dm_f0==5927.)]=np.nan
         
-    if site_ind==0 and series_ind==1 and angle_ind==4 and dir_ind==0:
-        dm_f0[np.where(dm_f0==5927.)]=np.nan
+    # if site_ind==0 and series_ind==1 and angle_ind==4 and dir_ind==0:
+    #     dm_f0[np.where(dm_f0==5927.)]=np.nan
     
-    if site_ind==0 and series_ind==1 and angle_ind==8 and dir_ind==0:
-        dm_f0[np.where(dm_f0==5929.)]=np.nan
+    # if site_ind==0 and series_ind==1 and angle_ind==8 and dir_ind==0:
+    #     dm_f0[np.where(dm_f0==5929.)]=np.nan
         
-    if site_ind==0 and series_ind==1 and angle_ind==8 and dir_ind==1:
-        dm_f0[np.where(dm_f0==5917.)]=np.nan
-        
+    # if site_ind==0 and series_ind==1 and angle_ind==8 and dir_ind==1:
+    #     dm_f0[np.where(dm_f0==5917.)]=np.nan
+
 
 fig = plt.figure(figsize=(11.69333333334,8.2667),dpi=102) # A4 - format
 
@@ -338,32 +346,36 @@ for i in range(9):
     axs3[-1].set_ylim(0,100)
     axs3[-1].set_xlim(5.700,5.930)
     axs3[-1].set_xticks([5.730,5.830,5.930])
-# 
 
 
-angle_inds=[8,7,6,5,4,3,2,1,0]
 
-site_ind=SITE
-series_ind=SERIES
+# angle_inds=[8,7,6,5,4,3,2,1,0]
+# SPM_DB
+# site_ind=SITE
+# series_ind=SERIES
 
 #SPM
-for angle_ind2 in range(9):
+for i in range(5):
     for dir_ind in range(2):
-        angle_ind=angle_inds[angle_ind2]        
-        ind=angle_ind2*2+dir_ind
-        f0_axe=SPM_DB[site_ind][angle_ind][dir_ind][series_ind][0]
-        f_axe=SPM_DB[site_ind][angle_ind][dir_ind][series_ind][1]
-        spectrogram=SPM_DB[site_ind][angle_ind][dir_ind][series_ind][2]                
-        pcm=axs1[ind].pcolormesh(f0_axe/1000, f_axe/1000,10*np.log10(spectrogram.T)+db_offset[site_ind],vmax=-80,vmin=-120,cmap='jet', rasterized=True)
+        # angle_ind=angle_inds[angle_ind2]        
+        # ind=angle_ind2*2+dir_ind
+        flat_ind = i*2+dir_ind
+        # print(flat_ind)
+        f0_axe=f0_axe_list[flat_ind]
+        f_axe=f_axe_list[flat_ind]
+        spectrogram=spec_log_list[flat_ind]            
+        pcm=axs1[flat_ind].pcolormesh(f0_axe/1000, f_axe/1000,spectrogram.T+db_offset[0],vmax=-80,vmin=-120,cmap='jet', rasterized=True)
+
 cb = plt.colorbar(pcm, cax = cbaxes, orientation='horizontal')  
 cbaxes.set_xlabel('Intensity, dB')
 
+# plt.show()
 
 ######
 
-for angle_ind2 in range(9):
+for angle_ind2 in range(5):
                 
-    angle_ind=angle_inds[angle_ind2]
+    # angle_ind=angle_inds[angle_ind2]
     ind=angle_ind2
     
     dir_ind=0
@@ -374,49 +386,49 @@ for angle_ind2 in range(9):
     bum_freq= BUM_FREQS[angle_ind2*2]
     bum_int= BUM_INT[angle_ind2*2]
 
-    if site_ind == 1 and series_ind == 1 and angle_ind in [5, 6, 7, 8]:
-        f_cut = np.loadtxt('f_cut')
-        colname = float(str(site_ind) + str(series_ind) + str(angle_ind) + str(dir_ind))
-        for ind_cut in range(len(f_cut)):
-            if f_cut[ind_cut, 0] == colname:
-                f_cut1 = f_cut[ind_cut, 1]
-                f_cut2 = f_cut[ind_cut, 2]
-                f_cut3 = f_cut[ind_cut, 3]
-                f_cut4 = f_cut[ind_cut, 4]
-                break
-        bum_freq_cut1_ind = np.argmin(np.abs(bum_f0-f_cut1))
-        bum_freq_cut2_ind = np.argmin(np.abs(bum_f0-f_cut2))
-        bum_int[bum_freq_cut1_ind:bum_freq_cut2_ind] = np.nan
+    # if site_ind == 1 and series_ind == 1 and angle_ind in [5, 6, 7, 8]:
+    #     f_cut = np.loadtxt('f_cut')
+    #     colname = float(str(site_ind) + str(series_ind) + str(angle_ind) + str(dir_ind))
+    #     for ind_cut in range(len(f_cut)):
+    #         if f_cut[ind_cut, 0] == colname:
+    #             f_cut1 = f_cut[ind_cut, 1]
+    #             f_cut2 = f_cut[ind_cut, 2]
+    #             f_cut3 = f_cut[ind_cut, 3]
+    #             f_cut4 = f_cut[ind_cut, 4]
+    #             break
+    #     bum_freq_cut1_ind = np.argmin(np.abs(bum_f0-f_cut1))
+    #     bum_freq_cut2_ind = np.argmin(np.abs(bum_f0-f_cut2))
+    #     bum_int[bum_freq_cut1_ind:bum_freq_cut2_ind] = np.nan
 
-        dm_freq_cut3_ind = np.argmin(np.abs(dm_f0-f_cut3))
-        dm_freq_cut4_ind = np.argmin(np.abs(dm_f0-f_cut4))
-        dm_int[dm_freq_cut3_ind:dm_freq_cut4_ind] = np.nan
+    #     dm_freq_cut3_ind = np.argmin(np.abs(dm_f0-f_cut3))
+    #     dm_freq_cut4_ind = np.argmin(np.abs(dm_f0-f_cut4))
+    #     dm_int[dm_freq_cut3_ind:dm_freq_cut4_ind] = np.nan
         
 
-    if angle_ind in [1,2,3]:     
-        bumd_f0= BUMD_F0[angle_ind2*2]
-        bumd_freq= BUMD_FREQS[angle_ind2*2]
-        bumd_int= BUMD_INT[angle_ind2*2]
-        if ind==5:
-            axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],1),'g',lw=1, label=r'BUM$_\mathrm{D}$/d')
-        else:
-            axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],1),'g',lw=1)
+    # if angle_ind in [1,2,3]:     
+    #     bumd_f0= BUMD_F0[angle_ind2*2]
+    #     bumd_freq= BUMD_FREQS[angle_ind2*2]
+    #     bumd_int= BUMD_INT[angle_ind2*2]
+    #     if ind==5:
+    #         axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],1),'g',lw=1, label=r'BUM$_\mathrm{D}$/d')
+    #     else:
+    #         axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],1),'g',lw=1)
         
     if ind==0:
-        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[site_ind],1),'r',lw=1,label='DM/d')
-        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[site_ind],1),'m',lw=1,label='BUM/d')
+        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[0],1),'r',lw=1,label='DM/d')
+        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[0],1),'m',lw=1,label='BUM/d')
     else:
-        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[site_ind],1),'r',lw=1)
-        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[site_ind],1),'m',lw=1)
+        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[0],1),'r',lw=1)
+        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[0],1),'m',lw=1)
     
-    if angle_ind in [0,1,2,3,4,5,6,7]:
-        bum2_f0= BUM2_F0[angle_ind2*2]
-        bum2_freq= BUM2_FREQS[angle_ind2*2]
-        bum2_int= BUM2_INT[angle_ind2*2]
-        if ind==1:
-            axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],1),'y',lw=1, label=r'2BUM/d')
-        else:
-            axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],1),'y',lw=1)
+    # if angle_ind in [0,1,2,3,4,5,6,7]:
+    #     bum2_f0= BUM2_F0[angle_ind2*2]
+    #     bum2_freq= BUM2_FREQS[angle_ind2*2]
+    #     bum2_int= BUM2_INT[angle_ind2*2]
+    #     if ind==1:
+    #         axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],1),'y',lw=1, label=r'2BUM/d')
+    #     else:
+    #         axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],1),'y',lw=1)
 
     dir_ind=1
     
@@ -427,49 +439,49 @@ for angle_ind2 in range(9):
     bum_freq= BUM_FREQS[angle_ind2*2+1]
     bum_int= BUM_INT[angle_ind2*2+1]
     
-    if site_ind == 1 and series_ind == 1 and angle_ind in [5, 6, 7, 8]:
-        f_cut = np.loadtxt('f_cut')
-        colname = float(str(site_ind) + str(series_ind) + str(angle_ind) + str(dir_ind))
-        for ind_cut in range(len(f_cut)):
-            if f_cut[ind_cut, 0] == colname:
-                f_cut1 = f_cut[ind_cut, 1]
-                f_cut2 = f_cut[ind_cut, 2]
-                f_cut3 = f_cut[ind_cut, 3]
-                f_cut4 = f_cut[ind_cut, 4]
-                break
-        bum_freq_cut1_ind = np.argmin(np.abs(bum_f0-f_cut1))
-        bum_freq_cut2_ind = np.argmin(np.abs(bum_f0-f_cut2))
-        bum_int[bum_freq_cut1_ind:bum_freq_cut2_ind] = np.nan
+    # if site_ind == 1 and series_ind == 1 and angle_ind in [5, 6, 7, 8]:
+    #     f_cut = np.loadtxt('f_cut')
+    #     colname = float(str(site_ind) + str(series_ind) + str(angle_ind) + str(dir_ind))
+    #     for ind_cut in range(len(f_cut)):
+    #         if f_cut[ind_cut, 0] == colname:
+    #             f_cut1 = f_cut[ind_cut, 1]
+    #             f_cut2 = f_cut[ind_cut, 2]
+    #             f_cut3 = f_cut[ind_cut, 3]
+    #             f_cut4 = f_cut[ind_cut, 4]
+    #             break
+    #     bum_freq_cut1_ind = np.argmin(np.abs(bum_f0-f_cut1))
+    #     bum_freq_cut2_ind = np.argmin(np.abs(bum_f0-f_cut2))
+    #     bum_int[bum_freq_cut1_ind:bum_freq_cut2_ind] = np.nan
 
-        dm_freq_cut3_ind = np.argmin(np.abs(dm_f0-f_cut3))
-        dm_freq_cut4_ind = np.argmin(np.abs(dm_f0-f_cut4))
-        dm_int[dm_freq_cut3_ind:dm_freq_cut4_ind] = np.nan
+    #     dm_freq_cut3_ind = np.argmin(np.abs(dm_f0-f_cut3))
+    #     dm_freq_cut4_ind = np.argmin(np.abs(dm_f0-f_cut4))
+    #     dm_int[dm_freq_cut3_ind:dm_freq_cut4_ind] = np.nan
 
-    if angle_ind in [1,2,3]:    
-        bumd_f0= BUMD_F0[angle_ind2*2+1]
-        bumd_freq= BUMD_FREQS[angle_ind2*2+1]
-        bumd_int= BUMD_INT[angle_ind2*2+1]        
-        if ind==5:
-            axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],1),'c',lw=1,label=r'BUM$_\mathrm{D}$/u')
-        else:
-            axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],1),'c',lw=1)
+    # if angle_ind in [1,2,3]:    
+    #     bumd_f0= BUMD_F0[angle_ind2*2+1]
+    #     bumd_freq= BUMD_FREQS[angle_ind2*2+1]
+    #     bumd_int= BUMD_INT[angle_ind2*2+1]        
+    #     if ind==5:
+    #         axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],1),'c',lw=1,label=r'BUM$_\mathrm{D}$/u')
+    #     else:
+    #         axs2[ind].plot(bumd_f0,ss.medfilt(bumd_int+db_offset[site_ind],1),'c',lw=1)
     
-    if angle_ind in [0,1,2,3,4,5,6,7]:
-        bum2_f0= BUM2_F0[angle_ind2*2+1]
-        bum2_freq= BUM2_FREQS[angle_ind2*2+1]
-        bum2_int= BUM2_INT[angle_ind2*2+1]
-        if ind==1:
-            axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],1),'orange',lw=1, label=r'2BUM/u')
-        else:
-            axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],1),'orange',lw=1)
+    # if angle_ind in [0,1,2,3,4,5,6,7]:
+    #     bum2_f0= BUM2_F0[angle_ind2*2+1]plt.show()
+    #     bum2_freq= BUM2_FREQS[angle_ind2*2+1]
+    #     bum2_int= BUM2_INT[angle_ind2*2+1]
+    #     if ind==1:
+    #         axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],1),'orange',lw=1, label=r'2BUM/u')
+    #     else:
+    #         axs2[ind].plot(bum2_f0,ss.medfilt(bum2_int+db_offset[site_ind],1),'orange',lw=1)
 
     if ind==0:
-        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[site_ind],1),'b',lw=1, label= 'DM/u')
-        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[site_ind],1),'k',lw=1, label= 'BUM/u')
+        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[0],1),'b',lw=1, label= 'DM/u')
+        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[0],1),'k',lw=1, label= 'BUM/u')
         axs2[ind].set_ylabel("SEE intensity, dB", labelpad=0)
     else:
-        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[site_ind],1),'b',lw=1)
-        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[site_ind],1),'k',lw=1)
+        axs2[ind].plot(dm_f0,ss.medfilt(dm_int+db_offset[0],1),'b',lw=1)
+        axs2[ind].plot(bum_f0,ss.medfilt(bum_int+db_offset[0],1),'k',lw=1)
     
     axs2[ind].set_xlim([5700,5930])
     axs2[ind].set_xticks([5730,5830,5930])
@@ -481,9 +493,9 @@ axs2[1].legend(loc=2, handlelength=1)
 axs2[5].legend(loc=3, handlelength=1)    
 ######
     
-for angle_ind2 in range(9):
+for angle_ind2 in range(5):
                 
-    angle_ind=angle_inds[angle_ind2]
+    # angle_ind=angle_inds[angle_ind2]
     ind=angle_ind2
     
     dir_ind=0
@@ -494,11 +506,11 @@ for angle_ind2 in range(9):
     bum_freq= BUM_FREQS[angle_ind2*2]
     bum_int= BUM_INT[angle_ind2*2]
     
-    if angle_ind in [1,2,3]:    
-        bumd_f0= BUMD_F0[angle_ind2*2]
-        bumd_freq= BUMD_FREQS[angle_ind2*2]
-        bumd_int= BUMD_INT[angle_ind2*2]
-        axs3[ind].plot(bumd_f0,bumd_freq,'g',lw=1)
+    # if angle_ind in [1,2,3]:    
+    bumd_f0= BUMD_F0[angle_ind2*2]
+    bumd_freq= BUMD_FREQS[angle_ind2*2]
+    bumd_int= BUMD_INT[angle_ind2*2]
+    # axs3[ind].plot(bumd_f0,bumd_freq,'g',lw=1)
         
     axs3[ind].plot(bum_f0,bum_freq,color=(0.75, 0.0, 0.75, .5),lw=1)
     axs3[ind].plot(bum_f0,bum_freq,'m',lw=1)
@@ -511,14 +523,14 @@ for angle_ind2 in range(9):
     bum_freq= BUM_FREQS[angle_ind2*2+1]
     bum_int= BUM_INT[angle_ind2*2+1]          
         
-    if angle_ind in [1,2,3]:    
-        bumd_f0= BUMD_F0[angle_ind2*2+1]
-        bumd_freq= BUMD_FREQS[angle_ind2*2+1]
-        bumd_int= BUMD_INT[angle_ind2*2+1] 
-        axs3[ind].plot(bumd_f0,bumd_freq,color=(0.0, 0.75, 0.75, 1.),lw=1)
-        bumd_f0_full=np.arange(5700,5850)
-        bumd_coefs=np.polyfit(bumd_f0[10::],bumd_freq[10::],1)
-        axs3[ind].plot(bumd_f0_full,bumd_f0_full*bumd_coefs[0]+bumd_coefs[1],color=(0.0, 0.75, 0.75, 1.),lw=1)
+    # if angle_ind in [1,2,3]:    
+    #     bumd_f0= BUMD_F0[angle_ind2*2+1]
+    #     bumd_freq= BUMD_FREQS[angle_ind2*2+1]
+    #     bumd_int= BUMD_INT[angle_ind2*2+1] 
+    #     axs3[ind].plot(bumd_f0,bumd_freq,color=(0.0, 0.75, 0.75, 1.),lw=1)
+    #     bumd_f0_full=np.arange(5700,5850)
+    #     bumd_coefs=np.polyfit(bumd_f0[10::],bumd_freq[10::],1)
+    #     axs3[ind].plot(bumd_f0_full,bumd_f0_full*bumd_coefs[0]+bumd_coefs[1],color=(0.0, 0.75, 0.75, 1.),lw=1)
     axs3[ind].plot(bum_f0,bum_freq,'k',lw=1)
     
     bum_f0_full=np.arange(5700,5800)
@@ -541,10 +553,10 @@ for angle_ind2 in range(9):
     if ind>0:
         axs3[ind].set_yticklabels({''})
     
-    ann = axs3[ind].annotate('', xy=(DM_PROC[site_ind][angle_ind][1][series_ind][0]+DM_PROC[site_ind][angle_ind][1][series_ind][1], 0), xycoords='data',
-                    xytext=(DM_PROC[site_ind][angle_ind][1][series_ind][0]+DM_PROC[site_ind][angle_ind][1][series_ind][1], 9), textcoords='data',
-                    arrowprops=dict(arrowstyle="->",                                  
-                                    ec="r",lw=1))
+    # ann = axs3[ind].annotate('', xy=(DM_PROC[site_ind][angle_ind][1][series_ind][0]+DM_PROC[site_ind][angle_ind][1][series_ind][1], 0), xycoords='data',
+    #                 xytext=(DM_PROC[site_ind][angle_ind][1][series_ind][0]+DM_PROC[site_ind][angle_ind][1][series_ind][1], 9), textcoords='data',
+    #                 arrowprops=dict(arrowstyle="->",                                  
+    #                                 ec="r",lw=1))
                                 
 # fig.text(0.01,0.33,'c)',horizontalalignment='center', verticalalignment='center', fontsize=18)
 # fig.text(0.01,0.66-0.05,'b)',horizontalalignment='center', verticalalignment='center', fontsize=18)
@@ -552,7 +564,7 @@ for angle_ind2 in range(9):
 
     
 # plt.savefig('figure2.pdf',dpi=600)
-plt.savefig('figure2_site'+str(SITE)+'_series'+str(SERIES)+'.png',dpi=300)
-plt.savefig('figure2_site'+str(SITE)+'_series'+str(SERIES)+'.pdf',dpi=600)
-# plt.show()
-plt.close()
+# plt.savefig('figure2_site'+str(SITE)+'_series'+str(SERIES)+'.png',dpi=300)
+# plt.savefig('figure2_site'+str(SITE)+'_series'+str(SERIES)+'.pdf',dpi=600)
+plt.show()
+# plt.close()
