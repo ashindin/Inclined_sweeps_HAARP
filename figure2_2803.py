@@ -260,18 +260,18 @@ for file_ind in range(10):
     #     dm_f0[np.where(dm_f0==5917.)]=np.nan
 
 
-fig = plt.figure(figsize=(11.69333333334,8.2667),dpi=102) # A4 - format
+fig = plt.figure(figsize=(8,8.2667),dpi=102) # A4 - format
 
 sshift=0.014
 
 left_board = 0.06
-width_1 = 0.039
+width_1 = 0.039*2
 height_1 = 0.25
 x_shift_1 = width_1+sshift
 
 bottom_1 = 0.72
 axs1 = []
-for i in range(18):
+for i in range(10):
     if i%2==0:
         axs1.append(plt.axes((left_board + i*x_shift_1, bottom_1, width_1, height_1)))
         axs1[-1].set_xlim(5.930,5.730)
@@ -287,28 +287,28 @@ for i in range(18):
         axs1[-1].set_yticks([])
     axs1[-1].set_ylim(-25,150)
     
-cbaxes = plt.axes((left_board,bottom_1-0.06,width_1*18+sshift*16,0.01))
+cbaxes = plt.axes((left_board,bottom_1-0.06,width_1*10+sshift*8,0.01))
 # cbaxes.set_xlim(-110,-75)
 cbaxes.set_yticks([])
 cbaxes.set_xticks([-110,-105,-100,-95,-90,-85,-80,-75])
 
-axs1[13].text(5.995, -11, 'DM', {'ha': 'center', 'va': 'center'}, rotation=0, )
-axs1[13].text(5.955, 80, 'BUM', {'ha': 'center', 'va': 'center'}, rotation=0, backgroundcolor='w')
+# axs1[13].text(5.995, -11, 'DM', {'ha': 'center', 'va': 'center'}, rotation=0, )
+# axs1[13].text(5.955, 80, 'BUM', {'ha': 'center', 'va': 'center'}, rotation=0, backgroundcolor='w')
 
-axs1[12].text(5.975, 25, r'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, backgroundcolor='w')
+# axs1[12].text(5.975, 25, r'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, backgroundcolor='w')
 
-axs1[12].text(5.995, 9, 'UM', {'ha': 'center', 'va': 'center'}, rotation=0, )
-axs1[12].annotate('', xy=(5.870, 9), xycoords='data', xytext=(5.950, 9), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
+# axs1[12].text(5.995, 9, 'UM', {'ha': 'center', 'va': 'center'}, rotation=0, )
+# axs1[12].annotate('', xy=(5.870, 9), xycoords='data', xytext=(5.950, 9), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
 
-axs1[13].text(5.985, 25, r'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, backgroundcolor='w')
-axs1[13].text(5.775, 120, '2BUM', {'ha': 'center', 'va': 'center'}, rotation=0, backgroundcolor='w')
+# axs1[13].text(5.985, 25, r'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, backgroundcolor='w')
+# axs1[13].text(5.775, 120, '2BUM', {'ha': 'center', 'va': 'center'}, rotation=0, backgroundcolor='w')
 
-axs1[13].annotate('', xy=(5.870, -10), xycoords='data', xytext=(5.950, -10), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
-axs1[13].annotate('', xy=(5.775, 90), xycoords='data', xytext=(5.775, 110), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
-axs1[13].annotate('', xy=(5.790, 50), xycoords='data', xytext=(5.870, 70), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
+# axs1[13].annotate('', xy=(5.870, -10), xycoords='data', xytext=(5.950, -10), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
+# axs1[13].annotate('', xy=(5.775, 90), xycoords='data', xytext=(5.775, 110), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
+# axs1[13].annotate('', xy=(5.790, 50), xycoords='data', xytext=(5.870, 70), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
 
-axs1[13].annotate('', xy=(5.830, 25), xycoords='data', xytext=(5.905, 25), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
-axs1[12].annotate('', xy=(5.800, 25), xycoords='data', xytext=(5.885, 25), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
+# axs1[13].annotate('', xy=(5.830, 25), xycoords='data', xytext=(5.905, 25), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
+# axs1[12].annotate('', xy=(5.800, 25), xycoords='data', xytext=(5.885, 25), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="k",lw=1))
 if SITE==0 and SERIES==1:
     axs1[4].text(5.985, 25, r'BUM$_{\mathrm{D}}$', {'ha': 'center', 'va': 'center'}, rotation=0, backgroundcolor='w')
     axs1[4].annotate('', xy=(5.790, 25), xycoords='data', xytext=(5.910, 25), textcoords='data', annotation_clip=False, arrowprops=dict(arrowstyle="->",ec="w",lw=1))
@@ -318,7 +318,7 @@ x_shift_2 = width_2+sshift*2
 bottom_2 = 0.35
 
 axs2 = []
-for i in range(9):
+for i in range(5):
     axs2.append(plt.axes((left_board + i*x_shift_2, bottom_2, width_2, height_1)))
     if i==0:
         axs2[-1].set_yticks([-110,-100,-90,-80])
@@ -335,7 +335,7 @@ for i in range(9):
 bottom_3 = 0.06
 
 axs3 = []
-for i in range(9):
+for i in range(5):
     axs3.append(plt.axes((left_board + i*x_shift_2, bottom_3, width_2, height_1)))
     if i==0: 
         axs3[-1].set_yticks([0,20,40,60,80,100])
@@ -490,7 +490,7 @@ for angle_ind2 in range(5):
 
 axs2[0].legend(loc=2, handlelength=1)
 axs2[1].legend(loc=2, handlelength=1)
-axs2[5].legend(loc=3, handlelength=1)    
+# axs2[5].legend(loc=3, handlelength=1)    
 ######
     
 for angle_ind2 in range(5):
